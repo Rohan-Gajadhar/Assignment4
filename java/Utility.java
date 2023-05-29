@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Map;
+
 public class Utility {
 
     /**
@@ -27,9 +30,27 @@ public class Utility {
         // TODO: Implement the function to calculate the total cost of the solution.
         double totalCost = 0.0;
 
-        
+        Map<Integer, VRPNode> nodes = instance.getNodes();
+        List<List<Integer>> routes = solution.getRoutes();
 
-        return 0.0;
+        //Depot to first node distance
+        for(List<Integer> route : routes){
+            VRPNode depot = instance.getDepot();
+            VRPNode firstNode = nodes.get(route.get(0));
+            totalCost += calculateEuclideanDistance(depot, firstNode);
+
+            for(int i = 0; i < route.size() - 1; i++){
+                VRPNode node1 = nodes.get(route.get(i));
+                VRPNode node2 = nodes.get(route.get(i + 1));
+                totalCost += calculateEuclideanDistance(node1, node2);
+            }
+
+            //Last node to depot distance
+            VRPNode lastNode = nodes.get(route.get(route.size() - 1));
+            totalCost += calculateEuclideanDistance(lastNode, depot);
+        }
+
+        return totalCost;
     }
 
     /**
@@ -39,6 +60,7 @@ public class Utility {
      */
     public static VRPSolution nearestNeighbourHeuristic(VRPInstance instance) {
         // TODO: Implement the nearest neighbour heuristic.
+        
         return null;
     }
 
