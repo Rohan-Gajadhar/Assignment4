@@ -8,7 +8,12 @@ public class Utility {
      */
     public static double calculateEuclideanDistance(VRPNode node1, VRPNode node2) {
         // TODO: Implement the function to calculate the Euclidean distance.
-        return 0.0;
+        double distance = 0.0;
+
+        distance += Math.pow((node1.getX() - node2.getX()), 2);
+        distance += Math.pow((node1.getY() - node2.getY()), 2);
+
+        return Math.sqrt(distance);
     }
 
     /**
@@ -20,6 +25,10 @@ public class Utility {
      */
     public static double calculateTotalCost(VRPSolution solution, VRPInstance instance) {
         // TODO: Implement the function to calculate the total cost of the solution.
+        double totalCost = 0.0;
+
+        
+
         return 0.0;
     }
 
