@@ -21,18 +21,18 @@ def main():
     # Executing and visualizing the nearest neighbour VRP heuristic.
     # Uncomment it to do your assignment!
 
-    nnh_solution = nearest_neighbour_heuristic(px, py, demand, capacity, depot)
-    nnh_distance = utility.calculate_total_distance(nnh_solution, px, py, depot)
-    print("Nearest Neighbour VRP Heuristic Distance:", nnh_distance)
-    utility.visualise_solution(nnh_solution, px, py, depot, "Nearest Neighbour Heuristic")
+    #nnh_solution = nearest_neighbour_heuristic(px, py, demand, capacity, depot)
+    #nnh_distance = utility.calculate_total_distance(nnh_solution, px, py, depot)
+    #print("Nearest Neighbour VRP Heuristic Distance:", nnh_distance)
+    #utility.visualise_solution(nnh_solution, px, py, depot, "Nearest Neighbour Heuristic")
 
     # Executing and visualizing the saving VRP heuristic.
     # Uncomment it to do your assignment!
     
-    # sh_solution = savings_heuristic(px, py, demand, capacity, depot)
-    # sh_distance = utility.calculate_total_distance(sh_solution, px, py, depot)
-    # print("Saving VRP Heuristic Distance:", sh_distance)
-    # utility.visualise_solution(sh_solution, px, py, depot, "Savings Heuristic")
+    #sh_solution = savings_heuristic(px, py, demand, capacity, depot)
+    #sh_distance = utility.calculate_total_distance(sh_solution, px, py, depot)
+    #print("Saving VRP Heuristic Distance:", sh_distance)
+    #utility.visualise_solution(sh_solution, px, py, depot, "Savings Heuristic")
 
 
 def nearest_neighbour_heuristic(px, py, demand, capacity, depot):

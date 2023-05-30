@@ -106,7 +106,7 @@ public class VRPIO {
                 writer.write(String.valueOf(i+1));
                 writer.write(": ");
                 for (int j = 0; j < solution.getRoutes().get(i).size(); j++) {
-                    writer.write(solution.getRoutes().get(i).get(j) + " ");
+                    writer.write(solution.getRoutes().get(i).get(j)-1 + " ");
                 }
                 writer.newLine();
             }

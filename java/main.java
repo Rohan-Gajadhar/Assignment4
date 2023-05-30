@@ -12,10 +12,10 @@ public class main {
         VRPSolution nnSol = Utility.nearestNeighbourHeuristic(instance1);
         nnSol.setTotalCost(Utility.calculateTotalCost(nnSol, instance2));
 
-        //VRPSolution svSol = Utility.savingsHeuristic(instance3);
-        //svSol.setTotalCost(Utility.calculateTotalCost(svSol, instance3));
+        VRPSolution svSol = Utility.savingsHeuristic(instance3);
+        svSol.setTotalCost(Utility.calculateTotalCost(svSol, instance3));
 
         VRPIO.writeSolution(nnSol, inst + "nn.sol");
-        //VRPIO.writeSolution(svSol, inst + "sv.sol");
+        VRPIO.writeSolution(svSol, inst + "sv.sol");
     }
 }
