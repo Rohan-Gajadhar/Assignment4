@@ -5,6 +5,8 @@ public class main {
     public static void main(String[] args) {
         String inst = "n32-k5"; // or "n80-k10"
         File instFile = new File("vrp-data/" + inst + ".vrp");
+        // Another possible solution to creating multiple instances -
+        // could be to implement a deep clone
         VRPInstance instance1 = VRPIO.loadInstance(instFile);
         VRPInstance instance2 = VRPIO.loadInstance(instFile);
         VRPInstance instance3 = VRPIO.loadInstance(instFile);
