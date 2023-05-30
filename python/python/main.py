@@ -7,7 +7,7 @@ def main():
 
     # Paths to the data and solution files.
     vrp_file = "n32-k5.vrp"  # "data/n80-k10.vrp"
-    sol_file = "n32-k5.sol"  # "data/n80-k10.sol"
+    sol_file = "n32-k5nn.sol"  # "data/n80-k10.sol"
 
     # Loading the VRP data file.
     px, py, demand, capacity, depot = loader.load_data(vrp_file)
@@ -21,10 +21,10 @@ def main():
     # Executing and visualizing the nearest neighbour VRP heuristic.
     # Uncomment it to do your assignment!
 
-    # nnh_solution = nearest_neighbour_heuristic(px, py, demand, capacity, depot)
-    # nnh_distance = utility.calculate_total_distance(nnh_solution, px, py, depot)
-    # print("Nearest Neighbour VRP Heuristic Distance:", nnh_distance)
-    # utility.visualise_solution(nnh_solution, px, py, depot, "Nearest Neighbour Heuristic")
+    nnh_solution = nearest_neighbour_heuristic(px, py, demand, capacity, depot)
+    nnh_distance = utility.calculate_total_distance(nnh_solution, px, py, depot)
+    print("Nearest Neighbour VRP Heuristic Distance:", nnh_distance)
+    utility.visualise_solution(nnh_solution, px, py, depot, "Nearest Neighbour Heuristic")
 
     # Executing and visualizing the saving VRP heuristic.
     # Uncomment it to do your assignment!

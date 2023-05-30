@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,11 @@ public class Utility {
         distance += Math.pow((node1.getX() - node2.getX()), 2);
         distance += Math.pow((node1.getY() - node2.getY()), 2);
 
-        return Math.sqrt(distance);
+        double rawResult = Math.sqrt(distance);
+        
+        return rawResult;
+        //int intResult = (int) Math.round(rawResult);
+        //return (double) intResult;
     }
 
     /**
@@ -37,6 +42,7 @@ public class Utility {
         for(List<Integer> route : routes){
             VRPNode depot = instance.getDepot();
             VRPNode firstNode = nodes.get(route.get(0));
+
             totalCost += calculateEuclideanDistance(depot, firstNode);
 
             for(int i = 0; i < route.size() - 1; i++){
@@ -60,8 +66,56 @@ public class Utility {
      */
     public static VRPSolution nearestNeighbourHeuristic(VRPInstance instance) {
         // TODO: Implement the nearest neighbour heuristic.
+
+        //initialize
+        Map<Integer, VRPNode> unvisited = instance.getNodes();
+        unvisited.remove(instance.getDepot().getID());
+        List<List<Integer>> routes = new ArrayList<List<Integer>>();
+
+        while(unvisited.size() > 0){
+
+            //create a new route starting from the depot
+            List<Integer> route = new ArrayList<Integer>();
+            routes.add(route);
+            VRPNode currentNode = instance.getDepot();
+            double remainingCapacity = instance.getCapacity();
+
+            //iterate through nodes to find the nearest, skipping any which are infeasible
+            while(remainingCapacity > 0 && unvisited.size() > 0){
+                double nearestNodeDistance = Double.MAX_VALUE;
+                VRPNode nearestFeasibleNode = null;
+                for(int nodeId : unvisited.keySet()){
+                    VRPNode node = unvisited.get(nodeId);
+
+                    //skip any nodes which exceed the remaining capacity
+                    if (node.getDemand() > remainingCapacity){
+                        continue;
+                    }
+
+                    double distanceToNode = calculateEuclideanDistance(currentNode, node);
+
+                    if (distanceToNode < nearestNodeDistance){
+                        nearestNodeDistance = distanceToNode;
+                        nearestFeasibleNode = node;
+                    }
+                }
+
+                if (nearestFeasibleNode == null){
+                    break;  //route is complete
+                }
+
+                //add the nearest feasible node to the route
+                route.add(nearestFeasibleNode.getID()-1);
+                currentNode = nearestFeasibleNode;
+
+                unvisited.remove(nearestFeasibleNode.getID());
+                remainingCapacity -= nearestFeasibleNode.getDemand();
+            }
+        }
+
+        VRPSolution sol = new VRPSolution(routes);
         
-        return null;
+        return sol;
     }
 
     /**
